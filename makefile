@@ -45,18 +45,18 @@ opencti-up:
 	@> .env
 	@cat ./envs/*.env >> .env
 	@echo "Starting services and connectors..."
-	@docker-compose $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) --env-file .env up -d
+	@docker-compose --project-name opencti $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) --env-file .env up -d
 	@echo "OpenCTI should be running"
 
 # Down OpenCTI
 opencti-down:
 	@echo "Stopping services..."
-	@docker-compose $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) down -v
+	@docker-compose --project-name opencti $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) down -v
 
 # Logs
 opencti-logs:
 	@echo "Access all docker-compose logs..."
-	@docker-compose $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) logs -f -t --tail=1000
+	@docker-compose --project-name opencti $(SERVICES_FILES_FLAGS) $(CONNECTOR_FILES_FLAGS) logs -f -t --tail=1000
 
 # Remove OpenCTI
 opencti-docker-prune:
