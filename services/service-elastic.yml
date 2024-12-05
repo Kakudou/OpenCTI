@@ -1,0 +1,36 @@
+services:
+  elasticsearch:
+    env_file: "../envs/service-elastic.env"
+    image: elasticsearch:8.15.3
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    environment:
+      # Comment-out the line below for a cluster of multiple nodes
+      - discovery.type=single-node
+      # Uncomment the line below below for a cluster of multiple nodes
+      # - cluster.name=docker-cluster
+      - xpack.ml.enabled=${XPACK_ML_ENABLED}
+      - xpack.security.enabled=${XPACK_SECURITY_ENABLED}
+      - thread_pool.search.queue_size=${THREAD_POOL_SEARCH_QUEUE_SIZE}
+      - logger.org.elasticsearch.discovery=${LOGGER_ORG_ELASTICSEARCH_DISCOVERY}
+      - "ES_JAVA_OPTS=-Xms${ELASTIC_MEMORY_SIZE} -Xmx${ELASTIC_MEMORY_SIZE}"
+    restart: always
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    healthcheck:
+      test: curl -s http://elasticsearch:9200 >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 50
+volumes:
+  esdata:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../opencti_persistent_volumes/esdata 
+      o: bind

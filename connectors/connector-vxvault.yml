@@ -1,0 +1,20 @@
+services:
+  connector-vxvault:
+    image: opencti/connector-vxvault:latest
+    env_file: "../envs/connector-vxvault.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_VXVAULT_CONNECTOR_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_VXVAULT_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_VXVAULT_NAME}
+      - CONNECTOR_SCOPE=${CONNECTOR_VXVAULT_SCOPE}
+      - VXVAULT_CREATE_INDICATORS=${VXVAULT_CREATE_INDICATORS}
+      - VXVAULT_INTERVAL=${VXVAULT_INTERVAL}
+      - VXVAULT_SSL_VERIFY=${VXVAULT_SSL_VERIFY}
+      - VXVAULT_URL=${VXVAULT_URL}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

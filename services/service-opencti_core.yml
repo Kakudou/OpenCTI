@@ -1,0 +1,50 @@
+services:
+  opencti:
+    env_file: "../envs/service-opencti_core.env"
+    image: opencti/platform:latest
+    environment:
+      - NODE_OPTIONS=${NODE_OPTIONS}
+      - APP__ADMIN__EMAIL=${OPENCTI_ADMIN_EMAIL}
+      - APP__ADMIN__PASSWORD=${OPENCTI_ADMIN_PASSWORD}
+      - APP__ADMIN__TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - APP__APP_LOGS__LOGS_LEVEL=${OPENCTI_APP_LOGS__LOGS_LEVEL}
+      - APP__BASE_URL=${OPENCTI_BASE_URL}
+      - APP__HEALTH_ACCESS_KEY=${OPENCTI_HEALTHCHECK_ACCESS_KEY}
+      - APP__PORT=${OPENCTI_PORT}
+      - OPENCTI_SSL_VERIFY=${OPENCTI_SSL_VERIFY}
+      - REDIS__HOSTNAME=${REDIS__HOSTNAME}
+      - REDIS__PORT=${REDIS__PORT}
+      - ELASTICSEARCH__URL=${ELASTICSEARCH__URL}
+      - ELASTICSEARCH__NUMBER_OF_REPLICAS=${ELASTICSEARCH__NUMBER_OF_REPLICAS}
+      - MINIO__ENDPOINT=${MINIO__ENDPOINT}
+      - MINIO__PORT=${MINIO__PORT}
+      - MINIO__USE_SSL=${MINIO__USE_SSL}
+      - MINIO__ACCESS_KEY=${MINIO_ROOT_USER}
+      - MINIO__SECRET_KEY=${MINIO_ROOT_PASSWORD}
+      - RABBITMQ__HOSTNAME=${RABBITMQ__HOSTNAME}
+      - RABBITMQ__PORT=${RABBITMQ__PORT}
+      - RABBITMQ__PORT_MANAGEMENT=${RABBITMQ__PORT_MANAGEMENT}
+      - RABBITMQ__MANAGEMENT_SSL=${RABBITMQ__MANAGEMENT_SSL}
+      - RABBITMQ__USERNAME=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ__PASSWORD=${RABBITMQ_DEFAULT_PASS}
+      - SMTP__HOSTNAME=${SMTP_HOSTNAME}
+      - SMTP__PORT=${SMTP__PORT}
+      - PROVIDERS__LOCAL__STRATEGY=${PROVIDERS__LOCAL__STRATEGY}
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: always
+    healthcheck:
+      test:  ["CMD", "wget", "-qO-", "http://opencti:8080/health?health_access_key=${OPENCTI_HEALTHCHECK_ACCESS_KEY}"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+

@@ -1,0 +1,19 @@
+services:
+  connector-mitre_datasets:
+    image: opencti/connector-mitre:latest
+    env_file: "../envs/connector-mitre_datasets.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_MITRE_DATASETS_CONNECTOR_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_MITRE_DATASETS_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_MITRE_DATASETS_NAME}
+      - CONNECTOR_RUN_AND_TERMINATE=${CONNECTOR_MITRE_DATASETS_RUN_AND_TERMINATE}
+      - CONNECTOR_SCOPE=${CONNECTOR_MITRE_DATASETS_SCOPE}
+      - MITRE_DATASETS_INTERVAL=${MITRE_DATASETS_INTERVAL}
+      - MITRE_REMOVE_STATEMENT_MARKING=${MITRE_DATASETS_REMOVE_STATEMENT_MARKING}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

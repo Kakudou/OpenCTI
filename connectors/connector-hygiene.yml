@@ -1,0 +1,20 @@
+services:
+  connector-hygiene:
+    image: opencti/connector-hygiene:latest
+    env_file: "../envs/connector-hygiene.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_AUTO=${CONNECTOR_HYGIENE_AUTO}
+      - CONNECTOR_CONFIDENCE_LEVEL=${CONNECTOR_HYGIENE_CONFIDENCE_LEVEL}
+      - CONNECTOR_ID=${CONNECTOR_HYGIENE_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_HYGIENE_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_HYGIENE_NAME}
+      - CONNECTOR_SCOPE=${CONNECTOR_HYGIENE_SCOPE}
+      - HYGIENE_ENRICH_SUBDOMAINS=${HYGIENE_ENRICH_SUBDOMAINS}
+      - HYGIENE_WARNINGLISTS_SLOW_SEARCH=${HYGIENE_WARNINGLISTS_SLOW_SEARCH}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

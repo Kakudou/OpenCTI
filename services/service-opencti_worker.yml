@@ -1,0 +1,15 @@
+services:
+  worker:
+    env_file: "../envs/service-opencti_worker.env"
+    image: opencti/worker:latest
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - WORKER_LOG_LEVEL=${WORKER_LOG_LEVEL}
+    depends_on:
+      opencti:
+        condition: service_healthy
+    deploy:
+      mode: replicated
+      replicas: 3
+    restart: always

@@ -1,0 +1,25 @@
+services:
+  connector-cve:
+    image: opencti/connector-cve:latest
+    env_file: "../envs/connector-cve.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_ID=${CONNECTOR_CVE_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_CVE_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_CVE_NAME}
+      - CONNECTOR_RUN_AND_TERMINATE=${CONNECTOR_CVE_RUN_AND_TERMINATE}
+      - CONNECTOR_SCOPE=${CONNECTOR_CVE_SCOPE}
+      - CONNECTOR_TYPE=${CONNECTOR_CVE_TYPE}
+      - CVE_API_KEY=${CONNECTOR_CVE_API_KEY}
+      - CVE_BASE_URL=${CONNECTOR_CVE_BASE_URL}
+      - CVE_HISTORY_START_YEAR=${CONNECTOR_CVE_HISTORY_START_YEAR}
+      - CVE_INTERVAL=${CONNECTOR_CVE_INTERVAL}
+      - CVE_MAINTAIN_DATA=${CONNECTOR_CVE_MAINTAIN_DATA}
+      - CVE_MAX_DATE_RANGE=${CONNECTOR_CVE_MAX_DATE_RANGE}
+      - CVE_PULL_HISTORY=${CONNECTOR_CVE_PULL_HISTORY}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

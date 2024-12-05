@@ -1,0 +1,18 @@
+services:
+  connector-yara:
+    image: opencti/connector-yara:latest
+    env_file: "../envs/connector-yara.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_AUTO=${CONNECTOR_YARA_AUTO}
+      - CONNECTOR_ID=${CONNECTOR_YARA_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_YARA_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_YARA_NAME}
+      - CONNECTOR_SCOPE=${CONNECTOR_YARA_SCOPE}
+      - CONNECTOR_CONFIDENCE_LEVEL=${CONNECTOR_YARA_CONFIDENCE_LEVEL}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

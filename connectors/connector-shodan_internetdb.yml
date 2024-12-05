@@ -1,0 +1,18 @@
+services:
+  connector-shodan_internetdb:
+    image: opencti/connector-shodan-internetdb:latest
+    env_file: "../envs/connector-shodan_internetdb.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_AUTO=${CONNECTOR_SHODAN_IDB_AUTO}
+      - CONNECTOR_ID=${CONNECTOR_SHODAN_IDB_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_SHODAN_IDB_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_SHODAN_IDB_NAME}
+      - CONNECTOR_SCOPE=${CONNECTOR_SHODAN_IDB_SCOPE}
+      - SHODAN_SSL_VERIFY=${SHODAN_IDB_SSL_VERIFY}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

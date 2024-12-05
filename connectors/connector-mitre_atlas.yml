@@ -1,0 +1,20 @@
+services:
+  connector-mitre_atlas:
+    image: opencti/connector-mitre-atlas:latest
+    env_file: "../envs/connector-mitre_atlas.env"
+    environment:
+      - OPENCTI_URL=${OPENCTI_BASE_URL}
+      - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
+      - CONNECTOR_CONFIDENCE_LEVEL=${CONNECTOR_MITRE_ATLAS_CONFIDENCE_LEVEL}
+      - CONNECTOR_ID=${CONNECTOR_MITRE_ATLAS_CONNECTOR_ID}
+      - CONNECTOR_LOG_LEVEL=${CONNECTOR_MITRE_ATLAS_LOG_LEVEL}
+      - CONNECTOR_NAME=${CONNECTOR_MITRE_ATLAS_NAME}
+      - CONNECTOR_RUN_AND_TERMINATE=${CONNECTOR_RUN_AND_TERMINATE}
+      - CONNECTOR_SCOPE=${CONNECTOR_MITRE_ATLAS_SCOPE}
+      - MITRE_ATLAS_INTERVAL=${MITRE_ATLAS_INTERVAL}
+      - MITRE_ATLAS_URL=${MITRE_ATLAS_URL}
+    restart: always
+    depends_on:
+      opencti:
+        condition: service_healthy
+

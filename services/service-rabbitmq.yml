@@ -1,0 +1,27 @@
+services:
+  rabbitmq:
+    env_file: "../envs/service-rabbitmq.env"
+    image: rabbitmq:3.13-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_NODENAME=${RABBITMQ_NODENAME}
+    volumes:
+      - amqpdata:/var/lib/rabbitmq
+    ports:
+      - "5672:5672"
+    restart: always
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+volumes:
+  amqpdata:
+    driver: local
+    driver_opts:
+      type: none
+      device: ../opencti_persistent_volumes/amqpdata
+      o: bind
+
