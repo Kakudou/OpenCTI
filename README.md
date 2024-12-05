@@ -75,35 +75,42 @@ The connectors enable OpenCTI to integrate with external threat intelligence fee
 
 3. **CVE Connector**  
    Fetches and imports CVE (Common Vulnerabilities and Exposures) data.
+   /!\ Exception in defined connector, this one need an API key, but feel Mandatory to me /!\
+   /!\ Request one: https://nvd.nist.gov/developers/request-an-api-key /!\
 
-4. **Hygiene**  
+4. **CPE Connector**  
+   Fetches and imports CVE (Common Vulnerabilities and Exposures) data.
+   /!\ Exception in defined connector, this one need an API key, but feel Mandatory to me /!\
+   /!\ Request one: https://nvd.nist.gov/developers/request-an-api-key /!\
+
+5. **Hygiene**  
    Analyzes and enriches threat data based on common hygiene principles.
 
-5. **MalwareBazaar**  
+6. **MalwareBazaar**  
    Integrates malware samples and hashes from MalwareBazaar.
 
-6. **MITRE Datasets**  
+7. **MITRE Datasets**  
    Imports threat intelligence datasets from MITRE.
 
-7. **MITRE Atlas**  
+8. **MITRE Atlas**  
    Enriches OpenCTI with MITRE Atlas adversary simulation and emulation plans.
 
-8. **OpenCTI Defaults**  
+9. **OpenCTI Defaults**  
    Provides a baseline setup and configuration for OpenCTI.
 
-9. **OpenCTI Datasets**  
+10. **OpenCTI Datasets**  
    Imports pre-defined datasets for testing or initial setup.
 
-10. **Ransomware Live**  
+11. **Ransomware Live**  
     Tracks live ransomware campaigns and related threat intelligence.
 
-11. **Shodan InternetDB**  
+12. **Shodan InternetDB**  
     Integrates Shodan's InternetDB data for threat insights.
 
-12. **VXVault**  
+13. **VXVault**  
     Provides malware URL and IP data from VXVault.
 
-13. **YARA**  
+14. **YARA**  
     Enriches data using YARA rules for malware analysis.
 
 ---
