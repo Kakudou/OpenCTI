@@ -1,6 +1,6 @@
 services:
   connector-shodan_internetdb:
-    image: opencti/connector-shodan-internetdb:latest
+    image: opencti/connector-shodan-internetdb:rolling
     env_file: "../envs/connector-shodan_internetdb.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

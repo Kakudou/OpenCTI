@@ -1,6 +1,6 @@
 services :
   connector-phishunt:
-    image: opencti/connector-phishunt:latest
+    image: opencti/connector-phishunt:rolling
     env_file: "../envs/connector-phishunt.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

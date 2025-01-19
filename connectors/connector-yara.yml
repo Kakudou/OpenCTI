@@ -1,6 +1,6 @@
 services:
   connector-yara:
-    image: opencti/connector-yara:latest
+    image: opencti/connector-yara:rolling
     env_file: "../envs/connector-yara.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

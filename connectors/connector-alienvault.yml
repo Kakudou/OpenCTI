@@ -1,6 +1,6 @@
 services:
   connector-alienvault:
-    image: opencti/connector-alienvault:latest
+    image: opencti/connector-alienvault:rolling
     env_file: "../envs/connector-alienvault.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

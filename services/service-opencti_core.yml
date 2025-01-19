@@ -1,7 +1,7 @@
 services:
   opencti:
     env_file: "../envs/service-opencti_core.env"
-    image: opencti/platform:latest
+    image: opencti/platform:rolling
     environment:
       - NODE_OPTIONS=${NODE_OPTIONS}
       - APP__ADMIN__EMAIL=${OPENCTI_ADMIN_EMAIL}

@@ -1,6 +1,6 @@
 services:
   connector-opencti_datasets:
-    image: opencti/connector-opencti:latest
+    image: opencti/connector-opencti:rolling
     env_file: "../envs/connector-opencti_datasets.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

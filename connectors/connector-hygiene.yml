@@ -1,6 +1,6 @@
 services:
   connector-hygiene:
-    image: opencti/connector-hygiene:latest
+    image: opencti/connector-hygiene:rolling
     env_file: "../envs/connector-hygiene.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

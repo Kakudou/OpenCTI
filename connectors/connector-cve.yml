@@ -1,6 +1,6 @@
 services:
   connector-cve:
-    image: opencti/connector-cve:latest
+    image: opencti/connector-cve:rolling
     env_file: "../envs/connector-cve.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

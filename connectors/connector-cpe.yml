@@ -1,6 +1,6 @@
 services:
   connector-cpe:
-    image: opencti/connector-cpe:latest
+    image: opencti/connector-cpe:rolling
     env_file: "../envs/connector-cpe.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

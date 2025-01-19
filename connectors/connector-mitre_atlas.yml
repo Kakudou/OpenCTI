@@ -1,6 +1,6 @@
 services:
   connector-mitre_atlas:
-    image: opencti/connector-mitre-atlas:latest
+    image: opencti/connector-mitre-atlas:rolling
     env_file: "../envs/connector-mitre_atlas.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

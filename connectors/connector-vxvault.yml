@@ -1,6 +1,6 @@
 services:
   connector-vxvault:
-    image: opencti/connector-vxvault:latest
+    image: opencti/connector-vxvault:rolling
     env_file: "../envs/connector-vxvault.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

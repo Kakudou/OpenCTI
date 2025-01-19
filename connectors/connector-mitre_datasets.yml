@@ -1,6 +1,6 @@
 services:
   connector-mitre_datasets:
-    image: opencti/connector-mitre:latest
+    image: opencti/connector-mitre:rolling
     env_file: "../envs/connector-mitre_datasets.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

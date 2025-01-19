@@ -1,6 +1,6 @@
 services:
   connector-ransomwarelive:
-    image: opencti/connector-ransomwarelive:latest
+    image: opencti/connector-ransomwarelive:rolling
     env_file: "../envs/connector-ransomwarelive.env"
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}

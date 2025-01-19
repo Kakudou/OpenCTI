@@ -1,7 +1,7 @@
 services:
   worker:
     env_file: "../envs/service-opencti_worker.env"
-    image: opencti/worker:latest
+    image: opencti/worker:rolling
     environment:
       - OPENCTI_URL=${OPENCTI_BASE_URL}
       - OPENCTI_TOKEN=${OPENCTI_ADMIN_TOKEN}
